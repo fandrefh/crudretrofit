@@ -12,7 +12,7 @@ from .serializers import CategorySerializer, ExpenseSerializer
 
 class CategoryListCreateView(APIView):
     serializer_class = CategorySerializer
-    permission_classes = (IsAuthenticated,)
+#    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         categories = [category.name for category in Category.objects.all()]
