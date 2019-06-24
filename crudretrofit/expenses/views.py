@@ -10,22 +10,23 @@ from .serializers import CategorySerializer, ExpenseSerializer
 
 # Create your views here.
 
-class CategoryListCreateView(APIView):
+class CategoryListCreateView(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
 #    permission_classes = (IsAuthenticated,)
 
-    def get(self, request, format=None):
-        categories = [category.name for category in Category.objects.all()]
-        print('Usuário do token:', request.data)
-        print('Usuário do token (request.user):', request.user)
-        return Response(categories)
+#    def get(self, request, format=None):
+#        categories = [category.name for category in Category.objects.all()]
+#        print('Usuário do token:', request.data)
+#        print('Usuário do token (request.user):', request.user)
+#        return Response(categories)
     
-    def post(self, request, format=None):
-        serializer = CategorySerializer(data=request.data)
-        if serializer.is_valid():
-           serializer.save()
-           return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+#    def post(self, request, format=None):
+#        serializer = CategorySerializer(data=request.data)
+#        if serializer.is_valid():
+#           serializer.save()
+#           return Response(serializer.data, status=201)
+#        return Response(serializer.errors, status=400)
 
 class CategoryRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
